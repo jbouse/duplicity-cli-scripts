@@ -3,11 +3,9 @@
 source $(dirname $0)/.config
 
 $DUPLICITY --exclude-device-files --exclude-filelist $EXCLUDE \
-        --encrypt-key $GPGKEY --sign-key $GPGKEY \
+        --encrypt-key $GPGKEY --sign-key $GPGKEY --use-agent \
         $SOURCE $DESTINATION $@ >${LOGFILE}.log 2>${LOGFILE}.err
 
 $DUPLICITY collection-status $DESTINATION >>${LOGFILE}.log 2>>${LOGFILE}.err
 
 $DUPLICITY list-current-files $DESTINATION >${LOGFILE}.list
-
-# touch /var/run/duplicity.ran
