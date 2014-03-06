@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source $(dirname $0)/.config
+
+$DUPLICITY list-current-files $DESTINATION $@
+

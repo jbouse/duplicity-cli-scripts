@@ -1,0 +1,6 @@
+#!/bin/bash
+
+source $(dirname $0)/.config
+
+$DUPLICITY remove-all-but-n-full 2 $DESTINATION $@ 
+

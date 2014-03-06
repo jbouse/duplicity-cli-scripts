@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source $(dirname $0)/.config
+
+$DUPLICITY --exclude-device-files --exclude-filelist $EXCLUDE \
+        --encrypt-key $GPGKEY --sign-key $GPGKEY \
+        $SOURCE $DESTINATION $@ >${LOGFILE}.log 2>${LOGFILE}.err
+
+$DUPLICITY collection-status $DESTINATION >>${LOGFILE}.log 2>>${LOGFILE}.err
+
+$DUPLICITY list-current-files $DESTINATION >${LOGFILE}.list
+
+# touch /var/run/duplicity.ran

@@ -1,0 +1,21 @@
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
+# FTP_PASSWORD=XXXXXXXXX
+# PASSPHRASE=XXXXXXXXX
+
+export PATH
+# export FTP_PASSWORD
+# export PASSPHRASE
+
+DUPLICITY=/usr/bin/duplicity
+GPGKEY=YOUR_KEYID
+EXCLUDE=/home/${USER}/Backup/duplicity-exclude.txt
+LOGFILE=/home/${USER}/Backup/duplicity
+
+DST_PROTO=scp
+DST_USER=${USER}
+DST_HOST=backup.example.com
+DST_PATH=${HOSTNAME}
+
+DESTINATION="${DST_PROTO}://${DST_USER}@${DST_HOST}/${DST_PATH}"
+SOURCE=/home/${USER}

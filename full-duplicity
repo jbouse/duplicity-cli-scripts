@@ -1,0 +1,12 @@
+#!/bin/bash
+set -x
+
+source $(dirname $0)/.config
+
+$DUPLICITY full --exclude-device-files --exclude-filelist $EXCLUDE \
+        --encrypt-key $GPGKEY --sign-key $GPGKEY --use-agent \
+        $SOURCE $DESTINATION $@ >${LOGFILE}.log 2>${LOGFILE}.err
+
+$DUPLICITY collection-status $DESTINATION >>${LOGFILE}.log 2>>${LOGFILE}.err
+
+$DUPLICITY list-current-files $DESTINATION >${LOGFILE}.list
